@@ -1,10 +1,19 @@
 from module import describe
 from module import cloudwatch
 from module import alert
+from typing import List
 
-
-def check(cw_client, efs_client, now_date):
-    # EFS
+# EFS
+def check(cw_client, efs_client, now_date) -> List[str]:
+    '''
+    :param
+    - cw_client : boto3 cloudwatch client
+    - {name}_client : boto3 {name} client
+    - now_date : datetime 모듈로 구한 현재 시간
+    
+    :return
+    - 모니터링 결과에 대한 메세지목록을 (List[str]) 반환합니다.
+    '''   
     result = []
     efs_namespace = "AWS/EFS"
     efs_metrics = ["PercentIOLimit"]

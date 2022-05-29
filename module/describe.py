@@ -1,5 +1,9 @@
 from typing import *
 
+"""
+Boto3의 describe 관련 모듈을 사용하여 자원정보를 추출하는 커스텀 모듈 모음.
+"""
+
 def all_load_balancers(elb_client):
     result = []
     response = elb_client.describe_load_balancers()

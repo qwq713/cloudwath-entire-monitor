@@ -49,7 +49,9 @@ if __name__ == "__main__":
     now_date = datetime.now() - timedelta(hours=9) - timedelta(minutes=5)
 
 
-
+    # 모니터링 결과 메세지 리스트.
+    result_messages = []
+    
     '''
     RDS CloudWatch 지표에 대한 모니터링 결과값을 반환합니다.
     - monitor/rds.py 의 check function을 사용합니다.
@@ -57,15 +59,18 @@ if __name__ == "__main__":
     rds_result = rds.check(cw_client=cw_client,
                            rds_client=rds_client,
                            now_date=now_date)
-
+    result_messages.extend(rds_result)
+    
+    
     '''
     ECS CloudWatch 지표에 대한 모니터링 결과값을 반환합니다.
     - monitor/ecs.py 의 check function을 사용합니다.
     '''
-    
     ecs_result = ecs.check(cw_client=cw_client,
                            ecs_client=ecs_client,
                            now_date=now_date)
+    result_messages.extend(ecs_result)
+    
     
     '''
     EFS CloudWatch 지표에 대한 모니터링 결과값을 반환합니다.
@@ -74,6 +79,8 @@ if __name__ == "__main__":
     efs_result = efs.check(cw_client=cw_client,
                            efs_client=efs_client,
                            now_date=now_date)
+    result_messages.extend(efs_result)
+    
     
     '''
     FSX CloudWatch 지표에 대한 모니터링 결과값을 반환합니다.
@@ -82,7 +89,7 @@ if __name__ == "__main__":
     fsx_result = fsx.check(cw_client=cw_client,
                            fsx_client=fsx_client,
                            now_date=now_date)
-    
+    result_messages.extend(fsx_result)
 
     
     
