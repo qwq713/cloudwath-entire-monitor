@@ -70,7 +70,7 @@ class CloudWatchData:
         # Available storage capacity
         # Total throughput
         elif self.namespace == "AWS/FSx":
-            if self.lable == "FreeStorageCapacity":
+            if self.label == "FreeStorageCapacity":
                 # 15 GB
                 threshold = 20*1024*1024*1024*1024
                 if self.data_point < threshold:
@@ -85,7 +85,7 @@ class CloudWatchData:
 
         # AWS/ECS
         elif self.namespace == "AWS/ECS":
-            if self.lable == "CPUUtilization":
+            if self.label == "CPUUtilization":
                 threshold = 80
                 if self.data_point > threshold:
                     alert = True
