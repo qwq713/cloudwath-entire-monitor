@@ -1,5 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
+from typing import Dict
+from typing import List
 
 
 class CloudWatchData:
@@ -99,16 +101,11 @@ class CloudWatchData:
         return alert
 
 
-def get_metric_statistics(cw_client, namespace: str, metric_name: str, dimension_name: str, dimension_value, now_date: datetime,statistic:str="Average") -> CloudWatchData:
+def get_metric_statistics(cw_client, namespace: str, metric_name: str, dimensions:List[Dict[str,str]], now_date: datetime,statistic:str="Average") -> CloudWatchData:
     response = cw_client.get_metric_statistics(
         Namespace=namespace,
         MetricName=metric_name,
-        Dimensions=[
-            {
-                "Name": dimension_name,
-                'Value': dimension_value
-            },
-        ],
+        Dimensions=dimensions,
         StartTime=now_date,
         EndTime=now_date+timedelta(minutes=5),
         Period=300,
@@ -126,4 +123,6 @@ def get_metric_statistics(cw_client, namespace: str, metric_name: str, dimension
         data_point = data_points[0].get("Average", -1)
         unit = data_points[0].get("Unit", "None")
 
-    return CloudWatchData(date=now_date, namespace=namespace, identifier=dimension_value, label=label, data_point=data_point, unit=unit)
+    identifier = dimensions[-1]["Value"]
+    
+    return CloudWatchData(date=now_date, namespace=namespace, identifier=identifier, label=label, data_point=data_point, unit=unit)
