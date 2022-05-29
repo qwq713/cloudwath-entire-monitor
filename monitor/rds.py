@@ -3,8 +3,8 @@ from module import cloudwatch
 from module import alert
 
 def check(cw_client,rds_client,now_date):
-    result = []
     # RDS
+    result = []
     rds_namespace = "AWS/RDS"
     rds_metrics = ["FreeableMemory",
                    "CPUUtilization",

@@ -34,8 +34,8 @@ class CloudWatchData:
         if self.namespace == "AWS/RDS":
             ""
             if self.label == "FreeableMemory":
-                # 1024 MB
-                threshold = 1024*1024*1024
+                # 1 GB
+                threshold = 1024 * 1024 * 1024
                 if self.data_point < threshold:
                     alert = True
 
@@ -45,12 +45,12 @@ class CloudWatchData:
                     alert = True
 
             elif self.label == "BurstBalance":
-                threshold = 90
+                threshold = 85
                 if self.data_point < threshold:
                     alert = True
 
             elif self.label == "EBSIOBalance%":
-                threshold = 90
+                threshold = 85
                 if self.data_point < threshold:
                     alert = True
 
@@ -62,7 +62,7 @@ class CloudWatchData:
         # AWS/EFS
         elif self.namespace == "AWS/EFS":
             if self.label == "PercentIOLimit":
-                threshold = 16 * 1024 * 1024 * 1024
+                threshold = 70
                 if self.data_point > threshold:
                     alert =  True
 
@@ -72,14 +72,14 @@ class CloudWatchData:
         elif self.namespace == "AWS/FSx":
             if self.label == "FreeStorageCapacity":
                 # 15 GB
-                threshold = 20*1024*1024*1024*1024
+                threshold = 15 * 1024*1024*1024
                 if self.data_point < threshold:
                     alert = True
             
             # Sum(DataReadBytes + DataWriteBytes)
             elif self.label == "TotalThroughput":
                 # 16 MB / sec
-                threshold = 16 * 1024 * 1024 * 1024
+                threshold = 16 * 1024 * 1024
                 if self.data_point > threshold:
                     alert =  True
 
