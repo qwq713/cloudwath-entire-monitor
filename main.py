@@ -89,6 +89,7 @@ if __name__ == "__main__":
     fsx_result = fsx.check(cw_client=cw_client,
                            fsx_client=fsx_client,
                            now_date=now_date)
+    
     result_messages.extend(fsx_result)
 
     

@@ -44,7 +44,7 @@ class CloudWatchData:
             # Lable : FreeableMemory , CPUUtilization, BurstBalance, EBSIOBalance%, EBSByteBalance%
             if self.label == "FreeableMemory":
                 # 1 GB
-                threshold = 1024 * 1024 * 1024
+                threshold = 1 * 1024 * 1024 * 1024
                 if self.data_point < threshold:
                     alert = True
 
