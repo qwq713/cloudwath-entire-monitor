@@ -42,7 +42,7 @@ def check(cw_client, ecs_client, now_date) -> List[str]:
                                                                dimensions=ecs_dimensions,
                                                                now_date=now_date)
             if cloudwatch_data.b_alert():
-                alert_result = alert.clog_str(3,cloudwatch_data=cloudwatch_data)
-                # alert_result = alert.clog(3,cloudwatch_data=cloudwatch_data)
+                # alert_result = alert.clog_str(3,cloudwatch_data=cloudwatch_data)
+                alert_result = alert.clog(3,cloudwatch_data=cloudwatch_data)
                 result.append(alert_result)
     return result

@@ -38,7 +38,7 @@ def check(cw_client,rds_client,now_date) -> List[str]:
                                             dimensions=rds_dimensions,
                                             now_date=now_date)
             if cloudwatch_data.b_alert():
-                alert_result = alert.clog_str(log_level=3, cloudwatch_data=cloudwatch_data)
-                # alert_result = alert.clog(log_level=3, cloudwatch_data=cloudwath_data)
+                # alert_result = alert.clog_str(log_level=3, cloudwatch_data=cloudwatch_data)
+                alert_result = alert.clog(log_level=3, cloudwatch_data=cloudwath_data)
                 result.append(alert_result)
     return result
